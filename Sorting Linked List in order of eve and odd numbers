@@ -1,1 +1,171 @@
 
+#include <iostream>
+using namespace std;
+
+class Node
+{
+	
+	public:
+		
+	int data;
+	Node *next;
+	
+	Node()
+	{
+		data=0;
+		next=0;
+		
+	}
+	
+	
+	Node(int data)
+	{
+		this->data=data;
+		this->next=0;
+	}
+	
+};
+
+class LinkedList
+{
+	
+	public:
+	Node *head;
+	
+	LinkedList()
+	{
+		head=0;
+	}
+	
+	LinkedList(Node *n)
+	{
+	    head=n;
+	
+		
+	}
+	
+	void Insert_Tail( int value)
+	{
+		Node *iterator = head;
+		Node *next_Node;
+		next_Node= new Node(value);
+		
+		if(head==0)
+		{
+		
+	        //	head=next_Node;
+		        head=next_Node;
+		}
+		
+		else
+		{
+			
+				while(iterator->next!=0)
+	            {
+	    	         iterator=iterator->next;
+		        }
+		
+		        iterator->next=next_Node;
+		        
+		        
+		}
+	
+		
+	}
+
+    void sorting()
+    {
+    	
+    Node* evenHead = 0;
+    Node* evenTail = 0;
+    Node* oddHead = 0;
+    Node* oddTail = 0;
+    
+    Node* current = head;
+    
+    while (current) {
+        if (current->data % 2 == 0) {
+            if (!evenHead) {
+                evenHead = evenTail = current;
+            } else {
+                evenTail->next = current;
+                evenTail = current;
+            }
+        } else {
+            if (!oddHead) {
+                oddHead = oddTail = current;
+            } else {
+                oddTail->next = current;
+                oddTail = current;
+            }
+        }
+        current = current->next;
+    }
+    
+    if (evenHead) {
+        head = evenHead;
+        evenTail->next = oddHead;
+    } else {
+        head = oddHead;
+    }
+    
+    if (oddTail) {
+        oddTail->next = 0;
+    }
+    	
+   }
+	
+
+
+	void Display()
+	{
+		Node * iterator=head;
+		while(iterator!=0)
+		{
+			cout<<iterator->data<<"->";
+			iterator=iterator->next;
+		}
+		    cout << "NULL" << endl;
+
+	}
+	
+	//getting node to inserting new node  after this node
+
+		
+};
+
+int main()
+{
+	
+	    
+		Node n(17);
+    	LinkedList LL(&n);
+    	
+        
+        LL.Insert_Tail(15);
+        LL.Insert_Tail(8);
+        LL.Insert_Tail(12);
+        LL.Insert_Tail(10);
+        LL.Insert_Tail(5);
+        LL.Insert_Tail(4);
+        LL.Insert_Tail(1);
+        LL.Insert_Tail(7);
+        LL.Insert_Tail(6);
+       
+        cout<<"Before sorting:\n";
+    	LL.Display();
+    	
+    	LL.sorting();
+        cout<<"\n\nAfetr sorting:\n";
+    	LL.Display();
+    	
+    	
+
+    	
+    	
+    	
+    	
+	
+	
+	return 0;
+}                        
