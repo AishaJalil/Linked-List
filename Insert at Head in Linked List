@@ -1,0 +1,88 @@
+#include <iostream>
+using namespace std;
+
+class Node
+{
+	
+	public:
+		
+	int data;
+	Node *next;
+	
+	Node()
+	{
+		data=0;
+		next=0;
+		
+	}
+	
+	
+	Node(int data)
+	{
+		this->data=data;
+		this->next=0;
+	}
+	
+};
+
+class LinkedList
+{
+	
+	public:
+	Node *head;
+	
+	LinkedList()
+	{
+		head=0;
+	}
+	
+	LinkedList(Node *n)
+	{
+		head=n;
+	
+		
+	}
+	
+	void display()
+	{
+		
+		Node * iterator=head;
+		while(iterator!=0)
+		{
+			cout<<iterator->data<<" ";
+			iterator=iterator->next;
+		}
+	
+	}
+	
+	void Insert_Front(int value)
+	{
+		Node *temp=head;
+		Node *new_node= new Node(value);
+		new_node->next=head;
+		head=new_node;
+		
+	}
+
+		
+};
+
+int main()
+{
+	Node n(1);
+	LinkedList LL(&n);
+	
+	
+        cout<<"Linked List :\n";
+        LL.Insert_Front(2);
+        LL.Insert_Front(3);
+        LL.Insert_Front(4);
+        LL.Insert_Front(5);
+        
+    	LL.display();
+	
+	
+	
+	return 0;
+	
+}
